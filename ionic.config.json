@@ -1,0 +1,7 @@
+{
+  "name": "com.pp.ringqrclient",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

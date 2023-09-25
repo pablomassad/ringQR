@@ -1,0 +1,9 @@
+client->firebase:ring(topic + nombre)
+firebase->android_ring:notification to topic NN
+android_ring->android_ring: (data.nombre==POS)
+android_ring->android_ring: geolocation
+android_ring->android_ring: geolocation
+firebase<-android_ring:reportPos(topic +(lat,lng))
+firebase->android_ring:notification to topic
+android_ring->android_ring: eval topic==PAM
+android_ring->browser:google.maps

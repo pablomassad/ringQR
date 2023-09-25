@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist/spa",
+    "site": "pp-ring-qr",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
