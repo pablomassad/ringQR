@@ -1,6 +1,6 @@
 import { reactive, readonly } from 'vue'
 import axios from 'redaxios'
-import { professionals } from 'src/pages/professionals'
+import professionals from 'src/pages/professionals.json'
 import fb from '../boot/firebase'
 
 let srv

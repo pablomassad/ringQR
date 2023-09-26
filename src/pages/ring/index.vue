@@ -38,11 +38,12 @@ import { ref, onMounted } from 'vue'
 import appStore from 'src/pages/appStore'
 import Card from 'src/pages/ring/Card.vue'
 import ConfirmDialog from 'fwk-q-confirmdialog'
+import { LocalStorage } from 'quasar'
 import moment from 'moment'
 
 const showNoti = ref(false)
 const selProf = ref('')
-const nombre = ref('')
+const nombre = ref(LocalStorage.getItem('QR_name'))
 
 onMounted(async () => {
     await appStore.actions.init()
@@ -57,6 +58,7 @@ const ring = () => {
         nombre: nombre.value,
         hora: moment().format('HH:mm:ss')
     }
+    LocalStorage.set('QR_name', nombre.value)
     appStore.actions.command(selProf.value, 'ring', JSON.stringify(args))
     const audio = new Audio('https://pp-ringqr.web.app/ring.mp3')
     audio.play()

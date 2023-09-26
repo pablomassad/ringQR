@@ -1,0 +1,35 @@
+AndroidManifest.xml =>
+
+      <service
+            android:name=".RunningService">
+      </service>
+
+=======================================================
+MainActivity.kt =>
+
+        setContent {
+            RingQRTheme {
+                Column (
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment=Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ){
+                    Button(onClick = {
+                        Intent(applicationContext, RunningService::class.java).also{
+                            it.action = RunningService.Actions.START.toString()
+                            startService(it)
+                        }
+                    }) {
+                        Text(text="Arrancar RING Service")
+                    }
+                    Button(onClick = {
+                        Intent(applicationContext, RunningService::class.java).also{
+                            it.action = RunningService.Actions.STOP.toString()
+                            startService(it)
+                        }
+                    }) {
+                        Text(text="Detener RING Service")
+                    }
+                }
+            }
+        }
