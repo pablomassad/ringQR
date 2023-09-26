@@ -13,45 +13,41 @@ String.prototype.lpad = function (padString, length) {
 updateVersion()
 professionals.forEach(usr => {
     updateUser(usr.topic)
-    // buildApk()
-    // deployApk(usr.topic)
+    buildApk()
+    deployApk(usr.topic)
 })
 
 function updateVersion () {
     const bufVer = fs.readFileSync(path.join(__dirname, '/android-RingQR/app/src/main/java/com/pp/ringqr/RingQRApp.kt'))
     let strVer = bufVer.toString()
 
+    let newVersionName$
     const regVer = /(([0-9]{1}.[0-9]{1,2}).([0-9]{2}))/gm
     strVer = strVer.replace(regVer, ($0, $1, $2, $3) => {
-        console.log('$0', $0) // 1.01.02
-        console.log('$1', $1) // 1.01.02
-        console.log('$2', $2) // 1.01
-        console.log('$3', $3) // 02
+        // console.log('$0', $0) // 1.01.02
+        // console.log('$1', $1) // 1.01.02
+        // console.log('$2', $2) // 1.01
+        // console.log('$3', $3) // 02
         const newBuildNum = Number($3) + 1
         const buildNum$ = newBuildNum.toString().lpad('0', 2)
         console.log('incrementa build num:', buildNum$)
-        const newVersionName$ = $2 + '.' + buildNum$
+        newVersionName$ = $2 + '.' + buildNum$
 
         const match = newVersionName$
-        console.log('new version:' + match)
         return match
     })
-
-    // fs.writeFileSync(path.join(__dirname, '/android-RingQR/app/src/main/java/com/pp/ringqr/RingQRApp.kt'), strVer, err => {
-    //    if (err === null) {
-    //        console.log('Actualizacion RingQRApp.kt => OK')
-    //    } else {
-    //        console.log('Error actualizando RingQRApp.kt: ', err)
-    //    }
-    // })
+    fs.writeFileSync(path.join(__dirname, '/android-RingQR/app/src/main/java/com/pp/ringqr/RingQRApp.kt'), strVer, err => {
+        if (err === null) {
+            console.log('Actualizacion RingQRApp.kt => OK')
+        } else {
+            console.log('Error actualizando RingQRApp.kt: ', err)
+        }
+    })
 
     console.log('')
-    console.log('#########################')
-    console.log('Current Version ' + verNum)
-    console.log('#########################')
     console.log('')
     console.log('#########################')
-    console.log('New Version ' + newVer)
+    console.log('New Version ' + newVersionName$)
     console.log('#########################')
     console.log('')
 }
@@ -61,18 +57,22 @@ function updateUser (name) {
 
     const regEnvId = /( var topicname: String = )(.\w*")/gm
     strUser = strUser.replaceAll(regEnvId, ($0, $1, $2) => {
-        console.log('$0:', $0)
-        console.log('$1:', $1)
-        console.log('$2:', $2)
+        // console.log('$0:', $0)
+        // console.log('$1:', $1)
+        // console.log('$2:', $2)
         const match = $1 + `"${name}"`
         console.log('new Name => ' + match)
         return match
     })
 
     console.log('Actualiza RingQRApp')
-    // fs.writeFileSync(path.join(__dirname, '/android-RingQR/app/src/main/java/com/pp/ringqr/RingQRApp.kt'), strUser, err => {
-    //    if (err === null) { console.log('Actualizacion RingQRApp OK') } else { console.log('Error actualizando RingQRApp: ', err) }
-    // })
+    fs.writeFileSync(path.join(__dirname, '/android-RingQR/app/src/main/java/com/pp/ringqr/RingQRApp.kt'), strUser, err => {
+        if (err === null) {
+            console.log('Actualizacion RingQRApp OK')
+        } else {
+            console.log('Error actualizando RingQRApp: ', err)
+        }
+    })
 }
 function buildApk () {
     /// /////////////////////////////////////////////////////////////////////////////
