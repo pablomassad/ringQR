@@ -14,7 +14,7 @@ import java.security.AccessController
 class RingQRApp:Application() {
 
     var topicname: String = "MM"
-    var version: String = "1.01.05"
+    var version: String = "1.01.06"
 
     override fun onCreate() {
         super.onCreate()

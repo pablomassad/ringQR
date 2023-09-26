@@ -101,7 +101,7 @@ function deployApk (name) {
     /// /////////////////////////////////////////////////////////////////////////////
     // COPIA APK al destino
     /// /////////////////////////////////////////////////////////////////////////////
-    const dest = `/Users/pablin/My Drive/PP/P♡P/P&P Soft/RingQR/ring_${name}`
+    const dest = `/Users/pablin/My Drive/PP/P♡P/P&P Soft/RingQR/ring_${name}.apk`
     console.log('Copiando apk a: ', dest)
     fs.copyFileSync(
         './android-RingQR/app/build/outputs/apk/debug/app-debug.apk',
