@@ -1,5 +1,5 @@
 <template>
-    <div class="cardFrame" @click="callRing">
+    <div class="cardFrame">
         <img :src="`images/${data.photo}.png`" class="photo" />
         <div>
             <div class="name">{{ data.name }}</div>

@@ -32,6 +32,7 @@
     "d3": "^7.8.5",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "10.0.0",
+    "fwk-q-firebase": "^0.0.6",
     "fwk-api": "0.1.5",
     "fwk-bus": "0.0.47",
     "fwk-content-provider": "0.0.16",

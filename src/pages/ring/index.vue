@@ -60,6 +60,8 @@ const ring = () => {
     }
     LocalStorage.set('QR_name', nombre.value)
     appStore.actions.command(selProf.value, 'ring', JSON.stringify(args))
+    const plRing = { ...args, dest: selProf.value, dia: moment().format('DD/MM/YY') }
+    appStore.actions.logRing(plRing)
     const audio = new Audio('https://pp-ringqr.web.app/ring.mp3')
     audio.play()
 }

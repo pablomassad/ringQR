@@ -1,7 +1,7 @@
 import { reactive, readonly } from 'vue'
 import axios from 'redaxios'
 import professionals from 'src/pages/professionals.json'
-import fb from '../boot/firebase'
+import fb from 'fwk-q-firebase'
 
 let srv
 
@@ -48,6 +48,9 @@ const actions = {
         actions.setCurrentDate(userDate)
         const res = await fb.getCollection(`userTracks/${usr}/trackDates/${userDate}/coords`)
         actions.setCurrentTrack(res)
+    },
+    async logRing (data) {
+        await fb.setDocument('logger_ringQR', data)
     },
     async command (topic, cmd, args) {
         console.log('store command:', topic, cmd)
